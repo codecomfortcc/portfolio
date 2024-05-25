@@ -37,7 +37,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="flex relative justify-between w-full  bg-foreground items-center px-3 py-2 border-b border-primary/10">
+    <div className="flex relative justify-between w-full   bg-foreground items-center px-3 py-2 border-b border-primary/60">
       <div className="flex w-full justify-between items-center text-white">
         <div className="flex-1">
           <span className="font-bold text-2xl text-violet-100"> CC.</span>
@@ -197,7 +197,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="absolute w-28 h-7 bg-foreground -left-[6px] -bottom-[22px] rounded-xl drop-shadow-lg text-white ">
+      <div className="absolute w-28 h-7 bg-foreground -left-[6px] border-b border-r border-primary/50 -bottom-[22px] rounded-xl drop-shadow-lg text-white ">
         <div className=" absolute -top-0 -left-7 w-7 h-7 bg-transparent z-10 curves " />
         <div className="w-full h-full  relative">
           <p className="text-center pb-2 top-0 text-violet-400 ">
@@ -205,10 +205,10 @@ const Navbar = () => {
               ? "Main"
               : pathname === "/projects"
               ? "Projects"
-              : "Contact"}
+              : pathname==="/contact" ? "Contact": "Dashboard"}
           </p>
         </div>
-        <div className=" absolute -top-0 -right-7 w-7 h-7 bg-transparent z-10 curves-right" />
+        <div className=" absolute -top-0 -right-7 w-7 h-7 bg-transparent z-10 curves-right " />
       </div>
     </div>
   );
