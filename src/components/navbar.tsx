@@ -27,6 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import gsap from "gsap";
 
 const Navbar = () => {
   const [currentPathName, setCurrentPathName] = useState("/");
@@ -36,8 +37,34 @@ const Navbar = () => {
   }, []);
   const router = useRouter();
 
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("up");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setScrollDirection("down");
+      } else if (window.scrollY < lastScrollY) {
+        setScrollDirection("up");
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
+  useEffect(() => {
+    if (scrollDirection === "up") {
+      gsap.to(".navbar", { top: 0, duration: 0.3 });
+    } else if (scrollDirection === "down") {
+      gsap.to(".navbar", { top: "-50px", duration: 0.3 });
+    }
+  }, [scrollDirection]);
   return (
-    <div className="flex relative justify-between w-full   bg-foreground items-center px-3 py-2 border-b border-primary/60">
+    <div className="flex  navbar sticky -top-[50px]  justify-between w-full  z-50 bg-foreground items-center px-3 py-2 border-b border-primary/60 ">
       <div className="flex w-full justify-between items-center text-white">
         <div className="flex-1">
           <span className="font-bold text-2xl text-violet-100"> CC.</span>
@@ -45,7 +72,7 @@ const Navbar = () => {
         <div className="flex-1">
           <RadioGroup defaultValue={pathname} className="flex gap-0 ">
             <div
-              className="relative"
+              className="relative "
               onClick={() => {
                 router.push("/");
               }}
@@ -57,7 +84,7 @@ const Navbar = () => {
               />
               <Label
                 htmlFor="main"
-                className="absolute select-none left-2 top-[3px] font-bold text-lg"
+                className="absolute select-none left-[8px] top-[3px] font-bold text-lg"
               >
                 M
               </Label>
