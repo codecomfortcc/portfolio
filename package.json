@@ -6,11 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "@hookform/resolvers": "^3.4.2",
+    "@kinde-oss/kinde-auth-nextjs": "^2.2.13",
+    "@libsql/client": "^0.6.0",
+    "@prisma/adapter-libsql": "^5.14.0",
     "@prisma/client": "^5.14.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
@@ -33,6 +37,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
+    "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.12.0",
