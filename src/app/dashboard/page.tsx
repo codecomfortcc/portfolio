@@ -33,7 +33,7 @@ const DashoboardPage = async () => {
       
         </div>
       </aside>
-      <div className="flex-1 ml-2 w-full h-screen  bg-orange-100 rounded-lg">
+      <div className="flex-1 ml-3 w-full h-screen  bg-orange-100 rounded-lg">
 
   
       </div>
