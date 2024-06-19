@@ -2,11 +2,12 @@ import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Checkout from "../../public/checkout.png";
-import CheckoutMobile from "../../public/checkout-mobile.png";
-import Capture from "../../public/Capture.png";
-import CaseCode from "../../public/casecode.png";
-import Hoobank from "../../public/hoobank.png";
+import Checkout from '@/assets/checkout.png'
+import CheckoutMobile from "@/assets/checkout-mobile.png";
+import Capture from "@/assets/Capture.png";
+import CaseCode from "@/assets/casecode.png";
+import Hoobank from "@/assets/hoobank.png";
+
 import {
   Card,
   CardContent,
@@ -101,13 +102,13 @@ export default function Home() {
                   </CardTitle>
                   <CardDescription className="py-4">
                     <Link
-                      href="https://github.com/yashovardhannagasiva"
+                      href="https://github.com/codecomfortcc"
                       target="blank"
                       className="text-primary font-semibold mb-2 w-full"
                     >
                       GitHub
                       <span className="text-foreground font-normal block">
-                        @yashovardhannagasiva
+                        @codecomfortcc
                       </span>
                     </Link>
                   </CardDescription>
@@ -151,28 +152,28 @@ export default function Home() {
             <HoverCard
               info={{
                 title: "Hoobank",
-                description: "A simple e-commerce website",
+                description: "A frontend webpage for banking sector with beautiful landing page",
                 image: Hoobank,
-                id: "/projects/asdferf",
-                repo: "https://github.com/yashovardhannagasiva/cartonbox",
+                id: "/projects/hoobank",
+                repo: "https://github.com/codecomfortcc/hoobankindia.git",
               }}
             />
             <HoverCard
               info={{
                 title: "Case Code",
-                description: "A simple e-commerce website",
+                description: "A simple e-commerce website to purchase phone cases",
                 image: CaseCode,
-                id: "/projects/asdferf",
-                repo: "https://github.com/yashovardhannagasiva/cartonbox",
+                id: "/projects/casecode",
+                repo: "https://github.com/codecomfortcc/case-code.git",
               }}
             />
             <HoverCard
               info={{
                 title: "DesignTec",
-                description: "A simple e-commerce website",
+                description: "A simple e-commerce website to view and purchase designtec products",
                 image: Capture,
-                id: "/projects/asdferf",
-                repo: "https://github.com/yashovardhannagasiva/cartonbox",
+                id: "/projects/designtec",
+                repo: "https://github.com/codecomfortcc/design-tec.git",
               }}
             />
           </div>
@@ -219,8 +220,8 @@ export default function Home() {
                    Omegle clone
                   </CardTitle>
                   <CardDescription className="text-sm max-w-[600px] text-gray-700 py-2   text-foreground">
-                    {/** eric is c developer take me as a freelance for omegle clone in MERN at fiver */}
-                    "Yasovardhan is a MERN stack developer who I hired to build an Omegle clone for my project. He understood my vision clearly and delivered a high-quality application that exceeded expectations.Yasovardhan was communicative and always available to address my concerns.
+                    
+                    "Yasovardhan is a MERN stack developer who I hired to debug my Omegle clone project. He understood my problem clearly and assist to build a high-quality application. Yasovardhan was communicative and always available to address my concerns."
                   </CardDescription>
                   <div className="flex justify-between items-center mt-5">
                     <Image
@@ -230,7 +231,7 @@ export default function Home() {
                     />
                     <div className="flex flex-col">
                       <h1 className="text-lg font-semibold">Eric</h1>
-                      <p className="text-sm">buyer</p>
+                      <p className="text-sm">buyer, Fiverr</p>
                     </div>
                   </div>
                 </CardContent>

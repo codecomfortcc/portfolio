@@ -10,11 +10,23 @@ import {
 } from "../ui/tooltip";
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
-import {AlignJustify, LayoutDashboard, LogIn, LogOut, UserRoundPlus } from "lucide-react";
+import {
+  AlignJustify,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
+  UserRoundPlus,
+} from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
-import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from '../ui/sheet'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 
 interface NavbarProps {
   userdata: {
@@ -22,13 +34,18 @@ interface NavbarProps {
     isAdmin: boolean;
   };
 }
-
+const PATHNAMES = ["projects", "dashboard", "/", "contact"];
 const Navbar = ({ userdata }: NavbarProps) => {
   const [currentPathName, setCurrentPathName] = useState("/");
   const pathname = usePathname();
-  useEffect(() => {
-    setCurrentPathName(pathname);
-  }, []);
+  const rootPathname = pathname.split('/')[1]
+    //! i need root path name like projects,main,...etc eventhough it have other things after that
+
+    useEffect(() => {
+      setCurrentPathName(rootPathname);
+      console.log(rootPathname)
+      
+    }, []);
   const router = useRouter();
 
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -65,7 +82,7 @@ const Navbar = ({ userdata }: NavbarProps) => {
           <span className="font-bold text-2xl text-violet-100">CC.</span>
         </div>
         <div className="flex-1">
-          <RadioGroup defaultValue={pathname} className="flex gap-0 ">
+          <RadioGroup defaultValue={`/${rootPathname}`} className="flex gap-0 ">
             <div
               className="relative "
               onClick={() => {
@@ -206,64 +223,51 @@ const Navbar = ({ userdata }: NavbarProps) => {
             </TooltipProvider>
           </div>
           <div className="md:hidden flex">
-          <Sheet>
-    <SheetTrigger>
-      <AlignJustify className="w-5 h-5 text-white hover:text-primary transition-all duration-200 ease-in" />
-    </SheetTrigger>
-    <SheetContent>
-      <SheetTitle>Menu</SheetTitle>
-      <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
-        <Link
-          href="/login"
-          className=" hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
-        >
-      
-            <LogIn className="w-5 h-5" />
-            <span> Login</span>
-       
-        </Link>
- 
-      </SheetDescription>
-      <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
-        <Link
-          href="/sign-up"
-          className=" hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
-        >
-        
-            <UserRoundPlus className="w-5 h-5" />
-            <span> Signup</span>
-   
-        </Link>
-  
-      </SheetDescription>
-      <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
-        <Link
-          href="/dashboard"
-          className=" bg-primary hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
-        >
-       
-            <LayoutDashboard className="w-5 h-5" />
-            <span> Dashboard</span>
-   
-        </Link>
-        
-      </SheetDescription>
-    </SheetContent>
-  </Sheet>
+            <Sheet>
+              <SheetTrigger>
+                <AlignJustify className="w-5 h-5 text-white hover:text-primary transition-all duration-200 ease-in" />
+              </SheetTrigger>
+              <SheetContent>
+                <SheetTitle>Menu</SheetTitle>
+                <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
+                  <Link
+                    href="/login"
+                    className=" hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
+                  >
+                    <LogIn className="w-5 h-5" />
+                    <span> Login</span>
+                  </Link>
+                </SheetDescription>
+                <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
+                  <Link
+                    href="/sign-up"
+                    className=" hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
+                  >
+                    <UserRoundPlus className="w-5 h-5" />
+                    <span> Signup</span>
+                  </Link>
+                </SheetDescription>
+                <SheetDescription className="w-full border-b py-4 border-gray-600 px-2">
+                  <Link
+                    href="/dashboard"
+                    className=" bg-primary hover:bg-violet-300/20 hover:text-violet-300 text-white w-full "
+                  >
+                    <LayoutDashboard className="w-5 h-5" />
+                    <span> Dashboard</span>
+                  </Link>
+                </SheetDescription>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
       <div className="absolute w-28 h-7 bg-foreground -left-[6px] border-b border-r border-primary/50 -bottom-[22px] rounded-xl drop-shadow-lg text-white">
         <div className=" absolute -top-0 -left-7 w-7 h-7 bg-transparent z-10 curves " />
         <div className="w-full h-full  relative">
-          <p className="text-center pb-2 top-0 text-violet-400 ">
-            {pathname === "/"
-              ? "Main"
-              : pathname === "/projects"
-              ? "Projects"
-              : pathname === "/contact"
-              ? "Contact"
-              : "Dashboard"}
+          <p className="text-center pb-2 top-0 text-violet-400 capitalize">
+            {
+              rootPathname===""?"Main":rootPathname
+            }
           </p>
         </div>
         <div className=" absolute -top-0 -right-7 w-7 h-7 bg-transparent z-10 curves-right " />

@@ -33,6 +33,7 @@ const HoverCard = ({info,className}:HoverCardProps) => {
           src={info.image}
           className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
           alt="thumbnail"
+
         />
       </CardItem>
       <CardItem
@@ -40,7 +41,7 @@ const HoverCard = ({info,className}:HoverCardProps) => {
         className="text-xl mt-3 px-2 font-bold text-neutral-600 "
       >
         <p> {info.title}</p>
-       <span className='font-normal text-base  truncate'> {info.description}</span>
+       <span className='font-normal text-base '> {info.description}</span>
       </CardItem>
  
 
