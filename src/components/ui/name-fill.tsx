@@ -48,7 +48,7 @@ const NameFill = ({ name, color, size = 110, baseColor }: NameFillProps) => {
     <div className="w-full mt-10 py-10">
       <h1
         ref={nameRef}
-        className={`text-center font-bold antialiased lg:text-[110px] md:text-7xl text-6xl ${baseColor}`}
+        className={`text-center font-bold antialiased lg:text-[110px] md:text-8xl text-6xl ${baseColor}`}
       >
         {words.map((word, wordIndex) => (
           <span key={wordIndex} className="inline-block">

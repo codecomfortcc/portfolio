@@ -23,9 +23,9 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <main className="bg-orange-100/70 ">
-      <MaxWidthWrapper className="min-h-screen ">
+      <MaxWidthWrapper className="lg:min-h-screen lg:flex lg:justify-center lg:items-center lg:relative lg:-top-10">
         {/*portfolio of codecomfort */}
-        <div className="flex flex-col px-5 py-10 w-full h-full  justify-center items-center">
+        <div className="flex flex-col  px-5 py-10 w-full h-full  justify-center items-center">
           <div className="flex gap-5 mb-5 mt-10">
             <Badge className="py-1">MERN stack developer</Badge>
             <Badge>Go developer</Badge>
@@ -44,7 +44,7 @@ export default function Home() {
             projects of all sizes, from small websites to large web
             applications.
           </p>
-          <div className="flex gap-5  relative border-dash-long border-gray-700 px-4 py-3 rounded-lg ">
+          <div className="flex gap-5 max-sm:mb-36 relative border-dash-long border-gray-700 px-4 py-3 rounded-lg ">
             <Image
               src={Checkout}
               className="absolute  -right-[320px] -top-[140px] lg:block hidden"
@@ -52,7 +52,7 @@ export default function Home() {
             />
             <Image
               src={CheckoutMobile}
-              className="absolute w-[170px] h-34 left-[60px] -bottom-[170px] lg:hidden block"
+              className="absolute w-[170px] h-34 left-[60px] -bottom-[170px] md:hidden block"
               alt="Checkout"
             />
             <Button>View Projects</Button>
@@ -61,8 +61,8 @@ export default function Home() {
         </div>
       </MaxWidthWrapper>
       <MaxWidthWrapper>
-        <div className="grid md:grid-cols-3 md:grid-rows-1 grid-rows-2 grid-cols-1 gap-x-3 gap-y-3 w-full  py-10 px-2 ">
-          <div className=" col-span-2 flex-1  w-full pt-5  border-dash-long  border-gray-600 ">
+        <div className="grid md:grid-cols-3 md:grid-rows-1  grid-rows-2 grid-cols-1  gap-3 w-full  py-10 px-2 ">
+          <div className=" col-span-2 flex-1 w-full pt-5  border-dash-long  border-gray-600 ">
             <Card>
               <CardContent className="px-4">
                 <CardTitle className="text-4xl py-2   font-bold  text-foreground">
@@ -91,9 +91,9 @@ export default function Home() {
               </CardContent>
             </Card>
           </div>
-          <div className="w-full ">
-            <Card className="border  w-full border-gray-600">
-              <CardContent>
+          <div className="max-sm:ml-1 w-full">
+            <Card className="border h-full  w-full border-gray-600">
+              <CardContent className="flex justify-center flex-col h-full">
                 <CardTitle className="text-3xl py-1 mt-2  font-bold  text-foreground">
                   Links
                 </CardTitle>
@@ -142,10 +142,10 @@ export default function Home() {
         </div>
       </MaxWidthWrapper>
       <div className="w-full px-2">
-        <h1 className="text-4xl py-2 px-1  font-bold text-center text-foreground">
+        <h1 className="text-4xl py-2 px-1 mb-5 font-bold text-center text-foreground">
           Projects
         </h1>
-        <div className="grid lg:grid-cols-3  md:grid-cols-2 grid-cols-1  gap-x-3 gap-y-3 w-full  px-2 ">
+        <div className="grid lg:grid-cols-3  grid-cols-1  gap-x-3 gap-y-3 w-full  px-2 ">
           <HoverCard
             info={{
               title: "Hoobank",

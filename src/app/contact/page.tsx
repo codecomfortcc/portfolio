@@ -99,9 +99,7 @@ const ContactPage = () => {
             .
           </p>
         </div>
-      <div className="flex justify-between mt-10 md:flex-row mb-10 flex-col">
-
-      
+      <div className="flex justify-between mt-10 lg:flex-row mb-10 flex-col">
         <div className="flex items-center  justify-center ">
           <Form {...form}>
             <form
