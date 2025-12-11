@@ -5,10 +5,7 @@ import { gsap } from "gsap";
 import PixelBoard from "@/components/pixelboard";
 import AnimatedProjectCard from "@/components/animated-project-card";
 import CaseCode from "@/assets/casecode.png";
-import {
-  CurrentStatusColors,
-  FutureStatusColors,
-} from "@/components/animated-project-card";
+
 const ProjectPage = () => {
   const [total, setTotal] = useState(0);
   const [width, setWidth] = useState<number | null>(null);

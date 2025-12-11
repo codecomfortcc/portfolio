@@ -3,7 +3,7 @@ import { Montserrat, Recursive } from 'next/font/google';
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+
 import Providers from '@/components/providers';
 import './globals.css'
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -21,13 +21,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getKindeServerSession();
-  const user = session?.getUser ? await session.getUser() : null;
-  const isAdmin = user?.email === process.env.ADMIN_EMAIL;
-  const userdata = {
-    user: user,
-    isAdmin: isAdmin,
-  }
   return (
     <html lang="en">
       <body className={recursive.className}>
