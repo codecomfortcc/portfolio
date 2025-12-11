@@ -1,4 +1,5 @@
 {
   "terminal.explorerKind": "both",
-  "editor.suggest.showStatusBar": false
+  "editor.suggest.showStatusBar": false,
+  "cSpell.words": ["Shadcnui"]
 }

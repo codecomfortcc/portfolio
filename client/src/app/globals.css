@@ -1,0 +1,287 @@
+@tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  :root {
+  --cell-size: 18px;
+  --gap: 4px;
+  --color: #d883ff;
+  --bg: #0f0f0f;
+  --radius: 6px;
+}
+/* container */
+.pixelboard-root {
+  background: var(--bg);
+  padding: 20px;
+
+  display: inline-block;
+  border-radius: 10px;
+}
+
+/* grid */
+.pixelboard-grid {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+/* cell */
+.pixelboard-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: var(--radius);
+  background: transparent;
+  box-sizing: border-box;
+  transition: background 160ms ease, transform 120ms ease, box-shadow 160ms;
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 1.2s infinite;
+}
+
+/* lit */
+.pixelboard-cell.on {
+  background: var(--color);
+  box-shadow:
+    0 0 0px 1px rgba(0, 0, 0, 0.08) inset,
+    0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+/* optional hover/pop */
+.pixelboard-cell.on:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+.led-dot {
+  box-shadow: inset 0 -1px 1px rgba(0,0,0,0.25);
+  will-change: transform, opacity;
+}
+
+/* responsive LED dot sizing tweak */
+@media (max-width: 640px) {
+  .led-dot { width: 6px !important; height: 6px !important; }
+}
+.react-activity-calendar {
+  background: transparent !important;
+
+}
+
+.react-activity-calendar svg rect {
+   /* outline */
+
+
+  rx: 6;
+  ry: 6;
+  transition: transform 0.2s ease, filter 0.2s ease;
+
+}
+.react-activity-calendar svg rect[fill="transparent"] {
+  stroke: black !important;
+  stroke-width: 0.03rem !important;
+  background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 80%),
+              radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 80%);
+}
+/* Empty cells (GitHub’s light gray) */
+.react-activity-calendar svg rect[fill="#ebedf0"],
+.react-activity-calendar svg rect[fill="#ffffff"],
+.react-activity-calendar svg rect[fill="rgb(235,237,240)"] {
+
+  stroke: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Hover lift for nice feedback */
+.react-activity-calendar svg rect:hover {
+  transform: translateY(-6%) scale(1.06);
+  stroke: rgba(0, 0, 0, 0.12) !important;
+  cursor: default;
+}
+.react-activity-calendar::-webkit-scrollbar {
+  height: 8px;
+  background: transparent; 
+}
+
+.react-activity-calendar::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.react-activity-calendar::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.5);
+  border-radius: 100px;
+  border: 2px solid transparent;
+}
+
+.react-activity-calendar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(150, 150, 150, 0.8);
+}
+
+/* For Firefox */
+.react-activity-calendar {
+  scrollbar-color: transparent transparent !important;
+  scrollbar-width: thin;
+  border-color: transparent;
+position: relative;
+  transition: scrollbar-color 0.3s ease;
+}
+.react-activity-calendar svg {
+  display: block;
+  margin-bottom: 16px; /* adds gap above the scrollbar */
+}
+.react-activity-calendar:hover{
+  scrollbar-color: #d89cff transparent !important;
+}
+.react-activity-calendar::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+
+
+
+.code-scrollbar {
+  scrollbar-color: #d89cff transparent !important;
+  scrollbar-width: thin;
+  border-color: transparent;
+  position: relative;
+  transition: scrollbar-color 0.3s ease;
+}
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 263 72% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 263 72% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 263 72% 4.1%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 263 72% 4.1%;
+    --foreground: 210 20% 98%;
+    --card: 263 72% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 263 72% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 215 27.9% 16.9%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 27.9% 16.9%;
+    --muted-foreground: 217.9 10.6% 64.9%;
+    --accent: 215 27.9% 16.9%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
+.curves{
+  border-top-right-radius: 20px;
+  box-shadow:10px -10px 0 0px  hsl( 263 72% 4.1%);
+
+}
+@layer utilities{
+  .border-dash-core{
+background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='hsl(263.4,70%,50.4%)' stroke-width='2' stroke-dasharray='8' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+
+}
+.border-dash-long{
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%23333' stroke-width='2' stroke-dasharray='12' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+  border-radius: 10px;
+}
+}
+.curves-right{
+  border-top-left-radius: 20px;
+  box-shadow:-10px -10px 0 0px  ;
+  box-shadow: -10px -10px hsl( 263 72% 4.1%) ;
+}
+
+
+.border-dash-traffic {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='100%25' y1='0' x2='100%25' y2='100%25' stroke='%23333' stroke-width='6' stroke-dasharray='12' stroke-linecap='round' /%3e%3cline x1='0' y1='100%25' x2='100%25' y2='100%25' stroke='%23333' stroke-width='2' stroke-dasharray='12' stroke-linecap='round' /%3e%3c/svg%3e");
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.border-dash-strong{
+  height: 100px;
+  width: 200px;
+  padding: 10px;
+  background-image: repeating-linear-gradient(to right, black 0%, black 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to right, black 0%, black 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, black 0%, black 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, black 0%, black 50%, transparent 50%, transparent 100%);
+  background-position: left top, left bottom, left top, right top;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+}
+
+@layer utilities{
+  
+  .bend-border {
+    border-bottom-right-radius: 10px;
+    height: 30px;
+    width: 130px;
+    background: white;
+    background: #fff2e2;
+    position: relative;
+    transform: skew(-40deg);
+    box-shadow: -10px -10px 0 0 #fff2e2;
+  }
+
+ .bend-border::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    right: -15px;
+    background: #fff2e200;
+    border-top-left-radius: 10px;
+    box-shadow: -5px -5px 0 2px #fff2e2;
+  }
+ .top-section {
+    height: 150px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .top-section::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: rgba(255, 255, 255, 0);
+    height: 15px;
+    width: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: -5px -5px 0 2px #fff2e2;
+  }
+
+}
