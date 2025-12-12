@@ -11,7 +11,11 @@ import * as Joi from 'joi';
     validationSchema: Joi.object({
       ADMIN_EMAIL: Joi.string().required(),
       DATABASE_URL: Joi.string().required(),
-      
+      SMTP_USER: Joi.string().required(),
+      SMTP_PASS: Joi.string().required(),
+      RECEIVE_EMAIL: Joi.string().required(),
+      JWT_SECRET: Joi.string().required(),
+      NODE_ENV: Joi.string().required(),
     }),
   }),
 ],

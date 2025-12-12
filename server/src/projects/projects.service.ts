@@ -1,31 +1,46 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { UpdateProjectDto } from './dto/update-project.dto';
-import { CreateProjectDto } from './dto/create-project.dto';
-import { NeonHttpDatabase } from 'drizzle-orm/neon-http';
-import { DRIZZLE } from 'src/drizzle/drizzle.module';
-import * as schema from 'src/drizzle/schema';
+import { NeonHttpDatabase } from "drizzle-orm/neon-http";
+import { CreateProjectDto } from "./dto/create-project.dto";
+import { InjectDb } from "src/drizzle/drizzle.provider";
+import { Injectable } from "@nestjs/common";
+import * as schema from "src/drizzle/schemas/index";
+import { eq } from "drizzle-orm";
+import { UpdateProjectDto } from "./dto/update-project.dto";
+
+
 @Injectable()
 export class ProjectsService {
   constructor(
-    @Inject(DRIZZLE) private readonly db: NeonHttpDatabase<typeof schema>
+    @InjectDb() private readonly db: NeonHttpDatabase<typeof schema>
   ) {}
-  create(createProjectDto: CreateProjectDto) {
-    return 'This action adds a new project';
+
+  async create(createProjectDto: CreateProjectDto) {
+    const result = await this.db.insert(schema.projects).values(createProjectDto).returning();
+    return result[0]; 
   }
 
-  findAll() {
-    return `This action returns all projects`;
+  async findAll(limit: number, offset: number) {
+    return this.db.select().from(schema.projects).limit(limit).offset(offset);
+  }
+  
+  async findOne(id: string) {
+    const result = await this.db.select().from(schema.projects).where(eq(schema.projects.id, id));
+    return result[0];
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} project`;
+  async update(id: string, updateProjectDto: UpdateProjectDto) {
+
+    const result = await this.db.update(schema.projects)
+      .set(updateProjectDto)
+      .where(eq(schema.projects.id, id))
+      .returning();
+    return result[0];
   }
 
-  update(id: string, updateProjectDto: UpdateProjectDto) {
-    return `This action updates a #${id} project`;
-  }
+  async remove(id: string) {
 
-  remove(id: string) {
-    return `This action removes a #${id} project`;
+    const result = await this.db.delete(schema.projects)
+      .where(eq(schema.projects.id, id))
+      .returning();
+    return result[0];
   }
 }
