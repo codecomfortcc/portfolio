@@ -1,18 +1,20 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
-import { cookies } from "next/headers";
 import { axiosInstance } from "@/services/api";
 const f = createUploadthing();
 const auth = async (req: Request) => {
   try {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("access_token");
-    if (!token) return null;
-    const response = await axiosInstance.get("/auth/me",{
+   const cookieHeader = req.headers.get("cookie");
+
+    if (!cookieHeader) return null;
+
+    const response = await axiosInstance.get("/auth/me", {
       headers: {
-       Cookie: `access_token=${token.value}`,
+        Cookie: cookieHeader, 
       },
     });
+
+
     const user = response.data;
     return { id: user.id || user.email || "unknown_user" }
   } catch (error) {
