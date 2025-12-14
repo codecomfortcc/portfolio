@@ -4,7 +4,8 @@ import { axiosInstance } from "@/services/api";
 const f = createUploadthing();
 const auth = async (req: Request) => {
   try {
-   const cookieHeader = req.headers.get("access_token");
+   const cookieHeader = req.headers.get("cookie");
+     console.log(cookieHeader);
     if (!cookieHeader) return null;
 
     const response = await axiosInstance.get("/auth/me", {

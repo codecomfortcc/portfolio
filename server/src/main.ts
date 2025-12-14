@@ -11,9 +11,10 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  const prodOrgins = process.env.FRONTEND_URL?.split(',');
+  const origins = process.env.FRONTEND_URL?.split(',');
+  console.log(origins);
   app.enableCors({
-    origin: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : prodOrgins,
+    origin: origins,
     credentials: true,
   });
   await app.listen(process.env.PORT ?? 4000);
