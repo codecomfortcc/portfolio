@@ -69,6 +69,18 @@ async requestOtp(email: string) {
       throw new InternalServerErrorException('Failed to send email');
     }
   }
+  createUploadToken(user: { email: string; role: string }) {
+  return this.jwtService.sign(
+    {
+      sub: user.email,
+      role: user.role,
+      purpose: "upload",
+    },
+    {
+      expiresIn: "5m", // 🔥 very important
+    },
+  );
+}
   async verifyOtp(inputOtp: string) {
     const myEmail = this.config.getAdminEmail();
     const [admin] = await this.db

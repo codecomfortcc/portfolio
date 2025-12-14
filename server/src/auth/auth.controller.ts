@@ -7,7 +7,13 @@ import { JwtAuthGuard } from './auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService, private readonly configService: ConfigService) {}
-
+ @Get("upload-token")
+@UseGuards(JwtAuthGuard)
+getUploadToken(@Req() req) {
+  return {
+    uploadToken: this.authService.createUploadToken(req.user),
+  };
+}
   @Post('login')
   @HttpCode(HttpStatus.OK)
   async login(@Body('email') email: string) {

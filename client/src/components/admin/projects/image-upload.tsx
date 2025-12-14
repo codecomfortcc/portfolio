@@ -6,7 +6,8 @@ import { useUploadThing } from "@/lib/uploadthing"; // The file from Step 5
 import { Loader2, UploadCloud, X, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast"; 
+import { toast } from "@/components/ui/use-toast";
+import { axiosInstance } from "@/services/api";
 
 interface ImageUploadProps {
   value: string;
@@ -19,11 +20,16 @@ export function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
 
   // 1. Initialize UploadThing Hook
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
+    headers: async () => {
+      const me = await axiosInstance.get("/auth/me");
+      return {
+        "x-user-id": me.data.email,
+      };
+    },
     onClientUploadComplete: (res) => {
-      // The upload is done! We get an array of files back.
       const url = res[0].url;
       setPreview(url);
-      onChange(url); // Pass the URL back to the parent form
+      onChange(url);
       toast({
         title: "Success",
         description: "Image uploaded successfully",

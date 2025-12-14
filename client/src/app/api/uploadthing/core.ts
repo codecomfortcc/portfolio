@@ -1,34 +1,37 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
-import { axiosInstance } from "@/services/api";
+import jwt from "jsonwebtoken";
+
 const f = createUploadthing();
-const auth = async (req: Request) => {
-  try {
-
-
-    const response = await axiosInstance.get("/auth/me");
-    const user = response.data;
-    
-    return { id: user.id || user.email || "unknown_user" }
-  } catch (error) {
-    console.log(error);
-    throw new UploadThingError("Unauthorized");
-  }
-};
 
 export const ourFileRouter = {
   imageUploader: f({
-    image: {
-      maxFileSize: "4MB",
-      maxFileCount: 1,
-    },
+    image: { maxFileSize: "4MB", maxFileCount: 1 },
   })
-    .middleware(async ({ req }) => {
-      const user = await auth(req);
-      if (!user) throw new UploadThingError("Unauthorized");
-      return { userId: user.id };
+    .middleware(({ req }) => {
+      const token = req.headers.get("x-upload-token");
+      if (!token) throw new UploadThingError("Unauthorized");
+
+      try {
+        const payload = jwt.verify(
+          token,
+          process.env.JWT_SECRET!
+        ) as {
+          sub: string;
+          role: string;
+          purpose: string;
+        };
+
+        if (payload.purpose !== "upload") {
+          throw new Error("Invalid token purpose");
+        }
+
+        return { userId: payload.sub };
+      } catch {
+        throw new UploadThingError("Invalid upload token");
+      }
     })
-    .onUploadComplete(async ({ metadata, file }) => {
+    .onUploadComplete(({ metadata }) => {
       return { uploadedBy: metadata.userId };
     }),
 } satisfies FileRouter;
