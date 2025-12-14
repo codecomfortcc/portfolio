@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Project, Contact } from "@/types";
-const BASE_URL = process.env.BACKEND_API_URL || "http://localhost:4000";
+const BASE_URL = process.env.NEXT_PUBLIC_ENV === "development" ? "http://localhost:4000" : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
