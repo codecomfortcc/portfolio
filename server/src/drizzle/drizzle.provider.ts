@@ -1,7 +1,7 @@
 import { Pool } from '@neondatabase/serverless';
 import { Inject } from '@nestjs/common';
 import { drizzle } from 'drizzle-orm/neon-serverless';
-import { ConfigService } from 'src/config/config.service';
+import { ConfigService } from '../config/config.service';
 import * as schema from './schemas/index';
 
 export const DRIZZLE_PROVIDER = Symbol('drizzle database connection');

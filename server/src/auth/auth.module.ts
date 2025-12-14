@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
-import { DrizzleModule } from 'src/drizzle/drizzle.module';
-import { ConfigModule } from 'src/config/config.module';
-import { ConfigService } from 'src/config/config.service';
-import { EmailModule } from 'src/email/email.module';
+import { DrizzleModule } from '../drizzle/drizzle.module';
+import { ConfigModule } from '../config/config.module';
+import { ConfigService } from '../config/config.service';
+import { EmailModule } from '../email/email.module';
 import { PassportModule } from '@nestjs/passport'; 
 import { JwtStrategy } from './jwt.strategy';  
 

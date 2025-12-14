@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } f
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
-import { JwtAuthGuard } from 'src/auth/auth.guard';
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('projects')
 export class ProjectsController {

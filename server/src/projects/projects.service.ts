@@ -1,8 +1,8 @@
 import { NeonHttpDatabase } from "drizzle-orm/neon-http";
 import { CreateProjectDto } from "./dto/create-project.dto";
-import { InjectDb } from "src/drizzle/drizzle.provider";
+import { InjectDb } from "../drizzle/drizzle.provider";
 import { Injectable } from "@nestjs/common";
-import * as schema from "src/drizzle/schemas/index";
+import * as schema from "../drizzle/schemas/index";
 import { eq } from "drizzle-orm";
 import { UpdateProjectDto } from "./dto/update-project.dto";
 
