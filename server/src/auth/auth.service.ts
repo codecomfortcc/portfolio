@@ -77,7 +77,8 @@ async requestOtp(email: string) {
       purpose: "upload",
     },
     {
-      expiresIn: "5m", // 🔥 very important
+      secret: this.config.getJwtSecret(),
+      expiresIn: "5m",
     },
   );
 }
