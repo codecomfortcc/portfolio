@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsEnum, IsArray, ValidateNested, IsUrl } from 'class-validator';
+import { IsString, IsOptional, IsEnum, IsArray, ValidateNested, IsUrl, ValidateIf } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export enum CurrentStatus {
@@ -52,6 +52,8 @@ export class CreateProjectDto {
   @IsUrl()
   repo: string;
 
+  // 👇 FIXED: Added the property name 'demo'
+  @ValidateIf((o) => o.demo !== "" && o.demo !== null && o.demo !== undefined)
   @IsUrl()
   @IsOptional()
   demo?: string;
@@ -69,5 +71,3 @@ export class CreateProjectDto {
   @Type(() => TechnologyDto)
   technologies: TechnologyDto[];
 }
-
-

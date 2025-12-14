@@ -1,16 +1,15 @@
-import React, { useRef } from "react";
-import { TechnologiesProps } from "./animated-project-card";
-import Image, { StaticImageData } from "next/image";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { TechnologiesProps } from "@/types";
+import { GetIcon } from "@/lib/get-icons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,31 +57,7 @@ const TechnologyScroller = ({
                 className="flex px-3 flex-col  items-center gap-1.5  py-1.5 bg-orange-200/60 border border-dash-long text-xs font-medium shadow-sm"
               >
                 <span className="w-8 h-8">
-                  {typeof tech.icon === "string" ? (
-                    tech.icon.startsWith("http") ? (
-                      <Image
-                        src={tech.icon}
-                        alt={tech.name}
-                        width={16}
-                        height={16}
-                      />
-                    ) : (
-                      <div className="w-8 h-8 bg-transparent">
-                        {tech.icon}
-                      </div>
-                    )
-                  ) : tech.icon &&
-                    typeof tech.icon === "object" &&
-                    "src" in tech.icon ? (
-                    <Image
-                      src={tech.icon as StaticImageData}
-                      alt={tech.name}
-                      width={16}
-                      height={16}
-                    />
-                  ) : (
-                    <span className="w-8 h-8 bg-transparent">{tech.icon}</span>
-                  )}
+                    <GetIcon name={tech.icon} />
                 </span>
                 <span className="font-bold">{tech.name}</span>
               </div>

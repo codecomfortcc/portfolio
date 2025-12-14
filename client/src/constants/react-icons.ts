@@ -74,6 +74,7 @@ import {
 import { FiExternalLink, FiGithub, FiGitlab } from "react-icons/fi";
 import { RiBootstrapLine } from "react-icons/ri";
 import {
+  RiAngularjsLine,
   RiJavascriptLine,
   RiNextjsLine,
   RiTailwindCssFill,
@@ -192,6 +193,7 @@ export {
 };
 
 export {
+  RiAngularjsLine as AngularjsIcon,
   RiJavascriptLine as JavascriptIcon,
   RiNextjsLine as NextJsIcon,
   RiTailwindCssFill as TailwindCssIcon,

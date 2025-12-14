@@ -1,64 +1,39 @@
 "use client";
 
 import React, { useEffect, useRef, useCallback } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { gsap } from "gsap";
 
 import TechnologyScroller from "./technology-scroller";
 import AnimatedCardButtons from "./animated-card-buttons";
 import TrafficLights from "./trafic-lights";
-import { IconBaseProps } from 'react-icons';
-export interface MiniProjectCardV2Props {
-  title: string;
-  description: string;
-  logo?: string | StaticImageData;
-  currentStatus:
-    | "development"
-    | "completed"
-    | "planning"
-    | "paused"
-    | "deprecated";
-  futureStatus:
-    | "maintained"
-    | "unmaintained"
-    | "community"
-    | "archived"
-    | "none";
-  imageSrc: string | StaticImageData;
-  alt?: string;
-  repo: string;
-  demo?: string;
+import { Project } from "@/types";
+import { useRouter } from "next/navigation";
+
+type AnimatedCardProps = Omit<Project, "createdAt" | "updatedAt"> & {
   accent?: string;
-  bg?: string;
-  technologies: TechnologiesProps[];
   className?: string;
-  onClick?: () => void;
-}
-
-export interface TechnologiesProps {
-  name: string;
-  icon: string | StaticImageData | React.ReactNode;  
-}
-
+};
 export default function AnimatedCard({
   title,
   description,
   imageSrc,
-  alt,
   repo,
   demo,
   accent = "#7c3aed",
   logo,
   currentStatus,
   futureStatus,
-  className,
-  onClick,
   technologies,
-}: MiniProjectCardV2Props) {
+  className,
+  id,
+}: AnimatedCardProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const hoverTlRef = useRef<gsap.core.Timeline | null>(null);
   const trafficLightsRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
   useEffect(() => {
+    console.log(logo);
     const root = rootRef.current!;
     const trafficLightsContainer = trafficLightsRef.current;
     if (!root) return;
@@ -66,7 +41,7 @@ export default function AnimatedCard({
     const titleEl = q("h3");
     const descEl = q("p");
     const links = q("a");
-  
+
     const hoverTl = gsap.timeline({
       paused: true,
       defaults: { duration: 0.4, ease: "power3.out" },
@@ -79,13 +54,7 @@ export default function AnimatedCard({
       },
       0
     );
-    hoverTl.to(
-      trafficLightsContainer,
-      {
-
-      },
-      0
-    );
+    hoverTl.to(trafficLightsContainer, {}, 0);
     hoverTl.to(
       titleEl,
       {
@@ -119,7 +88,6 @@ export default function AnimatedCard({
       0
     );
 
-
     hoverTlRef.current = hoverTl;
 
     const onEnter = () => hoverTl.play();
@@ -147,58 +115,49 @@ export default function AnimatedCard({
     };
   }, [accent]);
 
-  /* ---------------------------
-     Keyboard & activation
-     --------------------------- */
-  const handleKey = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onClick?.();
-      }
-    },
-    [onClick]
-  );
-
+  const handleOnClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push(`/projects/${id}`);
+  };
   return (
-    <article
+    <div
+      id={id}
       ref={rootRef}
       tabIndex={0}
-      role={onClick ? "button" : "article"}
       aria-label={title}
-      onKeyDown={handleKey}
-      onClick={() => onClick?.()}
-      className={`group relative w-full p-[2px] rounded-2xl overflow-hidden transform-gpu will-change-transform border-dash-long ${
-        className ?? ""
-      }`}
+      className={`group relative w-full p-[2px] h-full flex flex-col justify-around rounded-2xl overflow-hidden transform-gpu will-change-transform ${className} border-dash-long`}
       style={{
         borderRadius: 18,
       }}
+      onClick={handleOnClick}
     >
-      <div className="relative  w-full overflow-hidden top-section h-10  ">
-        <div ref={trafficLightsRef} className="bend-border  relative border-dash-traffic p-[2px] "></div>
+      <div className="relative  w-full overflow-hidden top-section h-10">
+        <div
+          ref={trafficLightsRef}
+          className="bend-border  relative border-dash-traffic p-[2px] "
+        ></div>
         <Image
           src={imageSrc}
-          alt={alt ?? title}
+          alt={title}
           fill
           className="object-cover -z-10 will-change-transform "
         />
         <TrafficLights
           logo={logo}
-          alt={alt ?? title}
+          alt={title}
           title={title}
           currentStatus={currentStatus}
           futureStatus={futureStatus}
         />
       </div>
-      <div className="p-4 md:p-5 flex flex-col flex-1 ">
+      <div className="p-4 md:p-5 flex flex-col flex-1 justify-between h-full ">
         <TechnologyScroller
           technologies={technologies}
           title={title}
           description={description}
         />
-        <AnimatedCardButtons repo={repo} demo={demo} />
+       <AnimatedCardButtons repo={repo} demo={demo}  />
       </div>
-    </article>
+    </div>
   );
 }

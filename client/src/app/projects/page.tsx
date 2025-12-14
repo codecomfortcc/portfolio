@@ -1,10 +1,10 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import GitHubCalendar from "react-github-calendar";
 import { gsap } from "gsap";
-import PixelBoard from "@/components/pixelboard";
-import AnimatedProjectCard from "@/components/animated-project-card";
-import CaseCode from "@/assets/casecode.png";
+import PixelBoard from "@/components/projects/pixelboard";
+import ProjectGrid from "@/components/projects/project-grid"; 
 
 const ProjectPage = () => {
   const [total, setTotal] = useState(0);
@@ -15,7 +15,7 @@ const ProjectPage = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const calendarRef = useRef<HTMLDivElement>(null);
   const countRef = useRef<HTMLParagraphElement>(null);
-  useEffect(() => {
+ useEffect(() => {
     // Only runs on the client
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -285,116 +285,65 @@ const ProjectPage = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center bg-orange-100/70 p-6 text-[#1a1a1a]  overflow-hidden w-full"
+      className="relative min-h-screen flex flex-col items-center bg-orange-100/70 p-4 sm:p-6 text-[#1a1a1a] overflow-x-hidden w-full"
     >
-      {width === null ? (
-        <div className="w-full flex  justify-center items-center ">
-          {" "}
-          <PixelBoard
-            text="LOADING"
-            cellSize={blockSize - 6}
-            gap={1}
-            charGapCells={1}
-            color="#7034d7"
-            bg="transparent"
-            radius={4}
-          />
-        </div>
-      ) : (
-        <div
-          ref={mainCardRef}
-          className="relative z-10 w-full max-w-5xl p-4 sm:p-10 border-dash-long border-gray-700 px-3 py-2 mx-3 my-2  "
-        >
-          <div className="flex flex-col items-center">
-            <h1
-              ref={titleRef}
-              className="text-3xl sm:text-5xl md:text-6xl font-black font-recursive text-primary/70 text-center mb-10 "
-            >
-              GitHub Activity
-            </h1>
-            <div
-              ref={calendarRef}
-              className="mb-8 sm:mb-10 w-full flex justify-center items-center calendar-container "
-            >
-              <GitHubCalendar
-                username="codecomfortcc"
-                colorScheme="dark"
-                blockSize={blockSize}
-                blockRadius={20}
-                theme={theme}
-                hideTotalCount
-                style={{
-                  borderWidth: 3,
-                  borderColor: "transparent",
-                  borderStyle: "dashed",
-                  padding: "20px",
-                  borderRadius: "30px",
-                }}
-              />
-            </div>
+      {/* 1. GitHub Activity Section */}
+      <div
+        ref={mainCardRef}
+        className="relative z-10 w-full max-w-5xl p-6 sm:p-10 border-dash-long border-gray-700/30 mx-auto my-8 bg-white/50 backdrop-blur-sm rounded-[32px] shadow-sm"
+      >
+        <div className="flex flex-col items-center">
+          <h1
+            ref={titleRef}
+            className="text-3xl sm:text-5xl md:text-6xl font-black font-recursive text-primary text-center mb-8 tracking-tight"
+          >
+            GitHub Activity
+          </h1>
+          
+          <div
+            ref={calendarRef}
+            className="mb-8 w-full flex justify-center items-center overflow-hidden"
+          >
+             {width === null ? (
+                <div className="h-40 flex items-center justify-center">
+                   <PixelBoard text="LOADING" cellSize={10} gap={1} color="#7034d7" bg="transparent" />
+                </div>
+             ) : (
+                <GitHubCalendar
+                    username="codecomfortcc"
+                    colorScheme="dark"
+                    blockSize={blockSize}
+                    blockRadius={100} // Fully rounded
+                    theme={theme}
+                    hideTotalCount
+                    style={{
+                        padding: "20px",
+                        overflow: "hidden" // Keeps it contained
+                    }}
+                />
+             )}
+          </div>
 
-            {/* Contribution Count */}
-            <div>
-              <p
-                ref={countRef}
-                className="text-center text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 tracking-tight"
-              >
-                {/* GSAP will populate this */}
-              </p>
-            </div>
+          <div>
+            <p
+              ref={countRef}
+              className="text-center text-xl sm:text-2xl font-bold text-primary tracking-tight"
+            >
+               0 contributions this year
+            </p>
           </div>
         </div>
-      )}
+      </div>
 
-      <div className="w-full  my-2 mx-3 px-3 py-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 max-w-5xl">
-        <AnimatedProjectCard
-          title="Universe of UI"
-          imageSrc={CaseCode}
-          currentStatus="development"
-          futureStatus="maintained"
-          description="A modern UI component library with 2600+ elements, free and open-source."
-          repo="https://github.com/example/universe-of-ui"
-          demo="https://universeofui.com"
-          technologies={[
-            { name: "React", icon: "⚛️" },
-            { name: "TypeScript", icon: "📘" },
-            { name: "GSAP", icon: "🎨" },
-            { name: "Tailwind", icon: "💨" },
-       
-          ]}
-        />{" "}
-        <AnimatedProjectCard
-          title="Universe of UI"
-          imageSrc={CaseCode}
-          description="A modern UI component library with 2600+ elements, free and open-source."
-          futureStatus="community"
-          currentStatus="completed"
-          repo="https://github.com/example/universe-of-ui"
-          demo="https://universeofui.com"
-          technologies={[
-            { name: "React", icon: "⚛️" },
-            { name: "TypeScript", icon: "📘" },
-            { name: "GSAP", icon: "🎨" },
-            { name: "Tailwind", icon: "💨" },
-
-          ]}
-        />{" "}
-        <AnimatedProjectCard
-          title="Universe of UI"
-          imageSrc={CaseCode}
-          description="A modern UI component library with 2600+ elements, free and open-source."
-          currentStatus="planning"
-          futureStatus="archived"
-          repo="https://github.com/example/universe-of-ui"
-          demo="https://universeofui.com"
-          technologies={[
-            { name: "React", icon: "⚛️" },
-            { name: "TypeScript", icon: "📘" },
-            { name: "GSAP", icon: "🎨" },
-            { name: "Tailwind", icon: "💨" },
-            { name: "Tailwind", icon: "💨" },
-          ]}
-        />
+      {/* 2. Projects Grid Section */}
+      <div className="w-full max-w-6xl px-2 sm:px-4 pb-20 mt-4">
+         <div className="flex items-center gap-4 mb-10 pl-2">
+            <h2 className="text-3xl font-bold text-gray-800 tracking-tight">All Projects</h2>
+            <div className="h-px flex-1 bg-gray-400/50 border-t border-dashed border-gray-600/50"></div>
+         </div>
+         
+         {/* 👇 The Infinite Scroll Grid */}
+         <ProjectGrid />
       </div>
     </div>
   );

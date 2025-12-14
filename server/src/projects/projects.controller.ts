@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
@@ -11,13 +11,16 @@ export class ProjectsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   create(@Body() createProjectDto: CreateProjectDto) {
-    
-    return this.projectsService.create(createProjectDto);
+    try {
+      return this.projectsService.create(createProjectDto);
+    } catch (error) {
+      console.log(error);
+    }
   }
   @Get()
-  findAll(@Param() params: {limit?: number, offset?: number}) {
-    const limit = params.limit || 10;
-    const offset = params.offset || 0;
+findAll(@Query() query: { limit?: string, offset?: string }) {
+    const limit = Number(query.limit) || 10;
+    const offset = Number(query.offset) || 0;
 
     return this.projectsService.findAll(limit, offset);
   }

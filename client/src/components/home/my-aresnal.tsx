@@ -23,7 +23,7 @@ import {
   TailwindCssIcon,
   RustIcon,
   JavascriptIcon,
-} from "../constants/react-icons";
+} from "@/constants/react-icons";
 import { cn } from "@/lib/utils";
 
 const CORE_SKILLS: CoreSkill[] = [

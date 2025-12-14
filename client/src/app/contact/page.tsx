@@ -1,5 +1,5 @@
 "use client";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
+import MaxWidthWrapper from "@/components/common/max-width-wrapper";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -99,128 +99,128 @@ const ContactPage = () => {
             .
           </p>
         </div>
-      <div className="flex justify-between mt-10 lg:flex-row mb-10 flex-col">
-        <div className="flex items-center  justify-center ">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 shadow-md p-6 mt-10 rounded-lg min-w-full  md:min-w-[500px] relative bg-orange-200  "
-            >
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Name"
-                        className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 "
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full  left-0 rounded-lg z-30" />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Email"
-                        className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 "
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full  left-0 rounded-lg  z-20" />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Message"
-                        className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 resize-none "
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full   left-0 rounded-lg  z-10 " />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
-        </div>
-        <div className="flex w-full p-2 mt-10 justify-center ">
-          <Card className="border  w-full max-w-[500px] border-gray-600">
-            <CardContent>
-              <CardTitle className="text-3xl py-1 mt-2  font-bold  text-foreground">
-                Links
-              </CardTitle>
-              <CardDescription className="py-4">
-                <Link
-                  href="https://github.com/codecomfortcc"
-                  target="blank"
-                  className="text-primary font-semibold mb-2 w-full"
-                >
-                  GitHub
-                  <span className="text-foreground font-normal block">
-                    @codecomfortcc
-                  </span>
-                </Link>
-              </CardDescription>
-              <Separator className=" bg-gray-600" />
-              <CardDescription className="py-4">
-                <Link
-                  href="https://youtube.com/@codecomfort"
-                  target="blank"
-                  className="text-primary font-semibold mb-2 w-full"
-                >
-                  Youtube
-                  <span className="text-foreground font-normal block">
-                    @codecomfort
-                  </span>
-                </Link>
-              </CardDescription>
-              <Separator className=" bg-gray-600" />
-              <CardDescription className="py-4">
-                <Link
-                  href="https://discord.gg/TsNQ8u6gYx"
-                  target="blank"
-                  className="text-primary font-semibold mb-2 w-full"
-                >
-                  Discord
-                  <span className="text-foreground font-normal block">
-                    @codecomfort
-                  </span>
-                </Link>
-              </CardDescription>
-              <Separator className=" bg-gray-600" />
-              <CardDescription className="py-4">
-                <Link
-                  href="https://x.com/@codecomfortyt"
-                  target="blank"
-                  className="text-primary font-semibold mb-2 w-full"
-                >
-                  Twitter (X)
-                  <span className="text-foreground font-normal block">
-                    @codecomfortyt
-                  </span>
-                </Link>
-              </CardDescription>
-            </CardContent>
-          </Card>
-        </div>
+        <div className="flex justify-between mt-10 lg:flex-row mb-10 flex-col">
+          <div className="flex items-center  justify-center ">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4 shadow-md p-6 mt-10 rounded-lg min-w-full  md:min-w-[500px] relative bg-orange-200  "
+              >
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Name"
+                          className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 "
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full  left-0 rounded-lg z-30" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field, fieldState }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Email"
+                          className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 "
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full  left-0 rounded-lg  z-20" />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Message"
+                          className="bg-orange-100/70 border-[3px] border-dashed border-gray-500 resize-none "
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="form-message bg-red-400 text-center text-white transition-all duration-200 absolute px-3 py-2 -top-12 w-full   left-0 rounded-lg  z-10 " />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Submit</Button>
+              </form>
+            </Form>
+          </div>
+          <div className="flex w-full p-2 mt-10 justify-center ">
+            <Card className="border  w-full max-w-[500px] border-gray-600">
+              <CardContent>
+                <CardTitle className="text-3xl py-1 mt-2  font-bold  text-foreground">
+                  Links
+                </CardTitle>
+                <CardDescription className="py-4">
+                  <Link
+                    href="https://github.com/codecomfortcc"
+                    target="blank"
+                    className="text-primary font-semibold mb-2 w-full"
+                  >
+                    GitHub
+                    <span className="text-foreground font-normal block">
+                      @codecomfortcc
+                    </span>
+                  </Link>
+                </CardDescription>
+                <Separator className=" bg-gray-600" />
+                <CardDescription className="py-4">
+                  <Link
+                    href="https://youtube.com/@codecomfort"
+                    target="blank"
+                    className="text-primary font-semibold mb-2 w-full"
+                  >
+                    Youtube
+                    <span className="text-foreground font-normal block">
+                      @codecomfort
+                    </span>
+                  </Link>
+                </CardDescription>
+                <Separator className=" bg-gray-600" />
+                <CardDescription className="py-4">
+                  <Link
+                    href="https://discord.gg/TsNQ8u6gYx"
+                    target="blank"
+                    className="text-primary font-semibold mb-2 w-full"
+                  >
+                    Discord
+                    <span className="text-foreground font-normal block">
+                      @codecomfort
+                    </span>
+                  </Link>
+                </CardDescription>
+                <Separator className=" bg-gray-600" />
+                <CardDescription className="py-4">
+                  <Link
+                    href="https://x.com/@codecomfortyt"
+                    target="blank"
+                    className="text-primary font-semibold mb-2 w-full"
+                  >
+                    Twitter (X)
+                    <span className="text-foreground font-normal block">
+                      @codecomfortyt
+                    </span>
+                  </Link>
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </MaxWidthWrapper>
     </main>

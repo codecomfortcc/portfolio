@@ -1,5 +1,5 @@
 "use client";
-import MaxWidthWrapper from "@/components/max-width-wrapper";
+import MaxWidthWrapper from "@/components/common/max-width-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
@@ -17,11 +17,11 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-import QuoteGenerator from "@/components/quote-generator";
-import AnimatedCard from "@/components/animated-project-card";
+import QuoteGenerator from "@/components/home/quote-generator";
+import AnimatedCard from "@/components/projects/animated-project-card";
 import { GetIcon } from "@/lib/get-icons";
 import { cn } from "@/lib/utils";
-import { MyArsenal } from "@/components/my-aresnal";
+import { MyArsenal } from "@/components/home/my-aresnal";
 import CustomCursor from "@/components/ui/custom-cursor";
 import { Reveal as SpotlightReveal } from "@/components/ui/spotlight-reveal";
 import { useState } from "react";
@@ -182,21 +182,21 @@ export default function Home() {
         </h1>
         <div className="grid lg:grid-cols-3 grid-cols-1  gap-x-4 gap-y-3 w-full  px-2 ">
           <AnimatedCard
+            id="hoobank"
             title="Hoobank"
             description="A frontend webpage for banking sector with beautiful landing page"
             imageSrc={Hoobank}
-            alt="Hoobank"
             repo="https://github.com/codecomfortcc/hoobankindia.git"
             demo="https://hoobankindiacoin.netlify.app/"
             technologies={[
-              { name: "React", icon: <GetIcon name="reactjs" size={28} /> },
+              { name: "React", icon: "react" },
               {
                 name: "Javascript",
-                icon: <GetIcon name="javascript" size={28} />,
+                icon: "javascript",
               },
               {
                 name: "Tailwind CSS",
-                icon: <GetIcon name="tailwindcss" size={28} />,
+                icon: "tailwindcss",
               },
             ]}
             currentStatus="completed"
@@ -204,21 +204,21 @@ export default function Home() {
           />
 
           <AnimatedCard
+            id="casecode"
             title="Case Code"
             description="A simple e-commerce website to purchase phone cases"
             imageSrc={CaseCode}
-            alt="Case Code"
             repo="https://github.com/codecomfortcc/case-code.git"
             demo="https://casecode.vercel.app"
             technologies={[
-              { name: "Next.js", icon: <GetIcon name="nextjs" size={28} /> },
+              { name: "Next.js", icon: "nextjs"},
               {
                 name: "TypeScript",
-                icon: <GetIcon name="typescript" size={28} />,
+                icon: "typescript",
               },
               {
                 name: "Tailwind CSS",
-                icon: <GetIcon name="tailwindcss" size={28} />,
+                icon: "tailwindcss",
               },
             ]}
             currentStatus="development"
@@ -226,20 +226,20 @@ export default function Home() {
           />
 
           <AnimatedCard
+            id="designtec"
             title="DesignTec"
             description="A simple e-commerce website to view and purchase designtec products"
             imageSrc={Capture}
-            alt="DesignTec"
             repo="https://github.com/codecomfortcc/design-tec.git"
             technologies={[
-              { name: "React", icon: <GetIcon name="reactjs" size={28} /> },
+              { name: "React", icon: "react" },
               {
                 name: "TypeScript",
-                icon: <GetIcon name="typescript" size={28} />,
+                icon: "typescript",
               },
               {
                 name: "Tailwind CSS",
-                icon: <GetIcon name="tailwindcss" size={28} />,
+                icon: "tailwindcss",
               },
             ]}
             currentStatus="paused"
@@ -266,7 +266,7 @@ export default function Home() {
                   DesignTec
                 </CardTitle>
                 <CardDescription className="text-sm max-w-[600px] text-gray-700 py-2   text-foreground">
-                 " Yasovardhan delivered outstanding results for DesignTec,
+                  " Yasovardhan delivered outstanding results for DesignTec,
                   meeting every deadline with precision. His ability to write
                   clean, high-quality code made the entire process seamless. I
                   highly recommend him for any complex development needs"

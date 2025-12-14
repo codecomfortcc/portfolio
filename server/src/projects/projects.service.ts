@@ -37,7 +37,6 @@ export class ProjectsService {
   }
 
   async remove(id: string) {
-
     const result = await this.db.delete(schema.projects)
       .where(eq(schema.projects.id, id))
       .returning();

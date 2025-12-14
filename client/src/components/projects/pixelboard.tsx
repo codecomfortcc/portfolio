@@ -1,14 +1,11 @@
 import React, { CSSProperties, useMemo } from "react";
-import "../app/globals.css";
+import "@/app/globals.css";
 
-/**
- * 5x7 bitmap font type:
- * keys are single characters, value is array of 7 strings each length 5 using '1'/'0'.
- */
+
 type BitmapChar = [string, string, string, string, string, string, string];
 type FontMap = Record<string, BitmapChar>;
 
-/** Minimal 5x7 font for letters used in examples. Add characters as needed. */
+
 const FONT_5x7: FontMap = {
   A: [
     "01110",
@@ -81,6 +78,15 @@ const FONT_5x7: FontMap = {
     "10000",
     "10000",
     "11111",
+  ],
+  M: [
+    "10001",
+    "11011",
+    "10101",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
   ],
   N: [
     "10001",
